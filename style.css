@@ -1,0 +1,193 @@
+/* ==========================================================================
+   Variáveis e Reset Básico
+   ========================================================================== */
+:root {
+    --bg-color: #272b33;
+    --card-bg: #3c3e44;
+    --text-main: #f5f5f5;
+    --text-muted: #9e9e9e;
+    --accent-color: #97ce4c;
+    --accent-hover: #b4e073;
+    
+    /* Cores de Status */
+    --status-alive: #55cc44;
+    --status-dead: #d63d2e;
+    --status-unknown: #9e9e9e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    line-height: 1.5;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   Cabeçalho e Filtros
+   ========================================================================== */
+.cabecalho-principal {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.titulo-principal {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.lista-filtros {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    list-style: none;
+}
+
+.btn-filtro {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 2px solid var(--accent-color);
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-filtro:hover, 
+.btn-filtro:focus {
+    background-color: rgba(151, 206, 76, 0.2);
+    outline: none;
+}
+
+/* Estilo para o botão ativo usando o atributo de acessibilidade */
+.btn-filtro[aria-pressed="true"] {
+    background-color: var(--accent-color);
+    color: #272b33;
+}
+
+/* ==========================================================================
+   Grid de Personagens (Main)
+   ========================================================================== */
+.conteudo-principal {
+    display: grid;
+    /* Cria um grid responsivo que adiciona colunas automaticamente */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* ==========================================================================
+   Card do Personagem
+   ========================================================================== */
+.card-personagem {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-personagem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.card-personagem__cabecalho {
+    position: relative;
+}
+
+.card-personagem__imagem {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-personagem__nome {
+    font-size: 1.5rem;
+    font-weight: 800;
+    padding: 15px 15px 5px 15px;
+}
+
+.card-personagem__conteudo {
+    padding: 0 15px 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ==========================================================================
+   Status e Informações
+   ========================================================================== */
+.card-personagem__status {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.icone-status {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+}
+
+/* Variações de cor da bolinha baseadas no data-status */
+.icone-status[data-status="alive"] { background-color: var(--status-alive); }
+.icone-status[data-status="dead"] { background-color: var(--status-dead); }
+.icone-status[data-status="unknown"] { background-color: var(--status-unknown); }
+
+.card-personagem__informacoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-termo {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.info-detalhe {
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+
+/* ==========================================================================
+   Acessibilidade (Screen Readers)
+   ========================================================================== */
+.texto-oculto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

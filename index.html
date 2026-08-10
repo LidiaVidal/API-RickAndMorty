@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Personagens de Rick and Morty</title>
+</head>
+<body>
+
+    <header class="cabecalho-principal">
+        <h1 class="titulo-principal">Personagens de Rick and Morty</h1>
+        
+        <!-- nav para o bloco de navegação/filtros -->
+        <nav class="navegacao-filtros" aria-label="Filtros de status dos personagens">
+            <ul class="lista-filtros">
+                <!-- aria-pressed indica ao leitor de tela qual botão está ativo -->
+                <!-- aria-controls indica qual área do site este botão altera -->
+                <li class="item-filtro">
+                    <button type="button" class="btn-filtro js-btn-filtro" data-status="" aria-pressed="true" aria-controls="lista-personagens">
+                        Todos
+                    </button>
+                </li>
+                <li class="item-filtro">
+                    <button type="button" class="btn-filtro js-btn-filtro" data-status="alive" aria-pressed="false" aria-controls="lista-personagens">
+                        Vivos
+                    </button>
+                </li>
+                <li class="item-filtro">
+                    <button type="button" class="btn-filtro js-btn-filtro" data-status="dead" aria-pressed="false" aria-controls="lista-personagens">
+                        Mortos
+                    </button>
+                </li>
+                <li class="item-filtro">
+                    <button type="button" class="btn-filtro js-btn-filtro" data-status="unknown" aria-pressed="false" aria-controls="lista-personagens">
+                        Desconhecidos
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 
+      aria-live="polite" faz com que leitores de tela anunciem 
+      quando novos cards forem injetados aqui pelo JavaScript.
+      aria-busy="false" pode ser alterado para "true" pelo JS enquanto a API carrega.
+    -->
+    <main id="lista-personagens" class="conteudo-principal js-container-personagens" aria-live="polite" aria-busy="false">
+        
+        <!-- CARD DE EXEMPLO (Estrutura a ser gerada pelo seu JS) -->
+        <!-- O elemento <article> é perfeito para um card auto-contido -->
+        <article class="card-personagem">
+            
+            <header class="card-personagem__cabecalho">
+                <!-- O 'alt' da imagem deve sempre receber o nome do personagem dinamicamente -->
+                <img class="card-personagem__imagem js-imagem" src="https://rickandmortyapi.com/api/character/avatar/1.jpeg" alt="Retrato do personagem Rick Sanchez">
+                <h2 class="card-personagem__nome js-nome">Rick Sanchez</h2>
+            </header>
+
+            <div class="card-personagem__conteudo">
+                <p class="card-personagem__status">
+                    <!-- Um texto oculto (via CSS depois) para contexto de acessibilidade -->
+                    <span class="texto-oculto">Status e espécie:</span>
+                    
+                    <!-- aria-hidden="true" esconde elementos puramente visuais dos leitores de tela -->
+                    <span class="icone-status js-icone-status" data-status="alive" aria-hidden="true"></span>
+                    
+                    <span class="js-status-especie">Vivo - Humano</span>
+                </p>
+
+                <!-- <dl> (Description List) é a tag mais semântica para dados de chave: valor -->
+                <dl class="card-personagem__informacoes">
+                    <div class="info-grupo">
+                        <dt class="info-termo">Última localização conhecida:</dt>
+                        <dd class="info-detalhe js-localizacao">Citadel of Ricks</dd>
+                    </div>
+                    <div class="info-grupo">
+                        <dt class="info-termo">Visto a primeira vez em:</dt>
+                        <dd class="info-detalhe js-primeira-aparicao">Pilot</dd>
+                    </div>
+                </dl>
+            </div>
+
+        </article>
+        <!-- FIM DO CARD DE EXEMPLO -->
+
+    </main>
+
+</body>
+</html>
