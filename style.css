@@ -26,7 +26,15 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     line-height: 1.5;
-    padding: 20px;
+    
+    /* Zera margens e paddings do body para os elementos colarem nas bordas */
+    margin: 0;
+    padding: 0;
+    
+    /* Configuração para empurrar o rodapé para o final da tela */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ==========================================================================
@@ -34,6 +42,7 @@ body {
    ========================================================================== */
 .cabecalho-principal {
     text-align: center;
+    padding: 40px 20px 0; 
     margin-bottom: 3rem;
 }
 
@@ -82,11 +91,15 @@ body {
    ========================================================================== */
 .conteudo-principal {
     display: grid;
-    /* Cria um grid responsivo que adiciona colunas automaticamente */
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
     max-width: 1200px;
     margin: 0 auto;
+    
+    padding: 0 20px 60px 20px;
+    
+    flex: 1; 
+    width: 100%;
 }
 
 /* ==========================================================================
@@ -190,4 +203,80 @@ body {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+/* ==========================================================================
+   Estilos Melhorados do Rodapé
+   ========================================================================== */
+.rodape-principal {
+    width: 100%;
+    background-color: #1a1a1a; 
+    /* Borda superior usando sua variável verde para criar uma identidade visual */
+    border-top: 3px solid var(--accent-color);
+    /* Sombra interna para dar sensação de profundidade em relação ao main */
+    box-shadow: 0 -10px 20px rgba(0,0,0,0.2);
+    padding: 2rem;
+    margin-top: auto; /* Garantia extra para ficar no fundo */
+}
+
+.rodape-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.rodape-texto {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin: 0;
+    text-align: center;
+    font-weight: 500;
+}
+
+.lista-sociais {
+    display: flex;
+    gap: 2.5rem; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.link-social {
+    color: var(--text-muted);
+    font-size: 1.8rem; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+/* Efeitos mais suaves e modernos ao passar o mouse */
+.link-social:hover,
+.link-social:focus-visible {
+    color: var(--accent-color);
+    transform: translateY(-5px) scale(1.1); 
+    /* Brilho ao redor do ícone usando drop-shadow */
+    filter: drop-shadow(0 4px 8px rgba(151, 206, 76, 0.4));
+}
+
+.link-social:focus-visible {
+    outline: 2px dashed var(--accent-color);
+    outline-offset: 6px;
+    border-radius: 4px;
+}
+
+/* Responsividade: Telas maiores que 600px */
+@media (min-width: 600px) {
+    .rodape-conteudo {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .rodape-texto {
+        text-align: left;
+    }
 }
