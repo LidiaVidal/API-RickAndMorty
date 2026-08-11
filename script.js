@@ -140,3 +140,48 @@ function criaCards(dadosAPI) {
 
 criaCards(dadosPersonagens)
 
+//Filtrar
+const btnFiltro = document.querySelectorAll('btn-filtro')
+const filtroTodos = document.querySelector('#filtro-todos')
+const filtroVivos = document.querySelector('#filtro-vivos')
+const filtroMortos = document.querySelector('#filtro-mortos')
+const filtroDesconhecidos = document.querySelector('#filtro-desconhecidos')
+
+filtroTodos.addEventListener('click', () => {
+    tagMain.innerHTML = ''
+    criaCards(dadosPersonagens)
+    botaoAtivo(filtroTodos)
+})
+
+filtroVivos.addEventListener('click', () => {
+    filtrar(dadosPersonagens, 'Alive')
+    botaoAtivo(filtroVivos)
+})
+
+filtroMortos.addEventListener('click', () => {
+    filtrar(dadosPersonagens, 'Dead')
+    botaoAtivo(filtroMortos)
+
+})
+
+filtroDesconhecidos.addEventListener('click', () => {
+    filtrar(dadosPersonagens, 'unknown')
+    botaoAtivo(filtroDesconhecidos)
+})
+
+function filtrar(dadosAPI, statusEscolhido) {
+    const dadosFiltrados = dadosAPI.filter((dados) => {
+        return dados.status == statusEscolhido
+    })
+    tagMain.innerHTML = ''
+    criaCards(dadosFiltrados)
+}
+
+function botaoAtivo(btnClicado) {
+    const btnFiltro = document.querySelectorAll('.btn-filtro')
+    btnFiltro.forEach((btn) => {
+        btn.ariaPressed = 'false'
+    })
+
+    btnClicado.ariaPressed = 'true'
+}
