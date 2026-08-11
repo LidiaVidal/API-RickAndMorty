@@ -91,7 +91,14 @@ function criaCards(dadosAPI) {
 
         const iconeStatus = document.createElement('span')
         iconeStatus.classList.add('icone-status', 'js-icone-status')
-        iconeStatus.dataset.status = 'alive'
+        if (dadosAPI[indice].status == 'Alive') {
+            iconeStatus.dataset.status = 'alive'
+        } else if (dadosAPI[indice].status == 'Dead') {
+            iconeStatus.dataset.status = 'dead'
+        } else if (dadosAPI[indice].status == 'unknown') {
+            iconeStatus.dataset.status = 'unknown'
+        }
+        
         iconeStatus.ariaHidden = 'true'
 
         //Adiciona status e especie dinamicamente
